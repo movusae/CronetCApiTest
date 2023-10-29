@@ -14,13 +14,14 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
+    val cronet = CronetEngine.Builder(this).build()
+    Log.i("cplx", "cronet version=" + cronet.versionString)
+
     binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
     // Example of a call to a native method
     binding.sampleText.text = stringFromJNI()
-    val cronet = CronetEngine.Builder(this).build()
-    Log.i("cplx", "cronet version=" + cronet.versionString)
   }
 
   /**
