@@ -5,15 +5,15 @@
 #define COMPONENTS_CRONET_NATIVE_SAMPLE_SAMPLE_EXECUTOR_H_
 // Cronet sample is expected to be used outside of Chromium infrastructure,
 // and as such has to rely on STL directly instead of //base alternatives.
+#include "include/cronet.idl_c.h"
 #include <condition_variable>
 #include <mutex>
 #include <queue>
 #include <thread>
-#include "cronet.idl_c.extras.h"
 // Sample implementation of Cronet_Executor interface using static
 // methods to map C API into instance of C++ class.
 class SampleExecutor {
- public:
+public:
   SampleExecutor();
   ~SampleExecutor();
   // Gets Cronet_ExecutorPtr implemented by |this|.
@@ -21,10 +21,11 @@ class SampleExecutor {
   // Shuts down the executor, so all pending tasks are destroyed without
   // getting executed.
   void ShutdownExecutor();
- private:
+
+private:
   // Runs tasks in |task_queue_| until |stop_thread_loop_| is set to true.
   void RunTasksInQueue();
-  static void ThreadLoop(SampleExecutor* executor);
+  static void ThreadLoop(SampleExecutor *executor);
   // Adds |runnable| to |task_queue_| to execute on |executor_thread_|.
   void Execute(Cronet_RunnablePtr runnable);
   // Implementation of Cronet_Executor methods.
@@ -41,4 +42,4 @@ class SampleExecutor {
   std::thread executor_thread_;
   Cronet_ExecutorPtr const executor_;
 };
-#endif  // COMPONENTS_CRONET_NATIVE_SAMPLE_SAMPLE_EXECUTOR_H_
+#endif // COMPONENTS_CRONET_NATIVE_SAMPLE_SAMPLE_EXECUTOR_H_

@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
+    val dir = this.cacheDir.absolutePath
+    Log.i("cplx","cache dir=$dir")
 
     // Example of a call to a native method
     binding.sampleText.text = stringFromJNI()

@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 #include "sample_url_request_callback.h"
 #include "android/log.h"
-#include "cronet.idl_c.extras.h"
 #include <iostream>
 #include <sstream>
 SampleUrlRequestCallback::SampleUrlRequestCallback()
